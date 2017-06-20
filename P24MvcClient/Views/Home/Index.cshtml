@@ -1,0 +1,42 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        @ViewBag.ToDisplay
+        @using (Html.BeginForm ("Index", "Home", FormMethod.Post)) 
+        {
+            @ViewBag.TestResult
+            <table>
+                <tr>
+                    <td>@Html.Label("Merchant Id:")</td>
+                    <td>@Html.TextBox("MerchantId", null ,new { @value = ViewBag.MerchantId })</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Pos Id:")</td>
+                    <td>@Html.TextBox("PosId", null, new { @value = ViewBag.PosId })</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Crc Key:")</td>
+                    <td>@Html.TextBox("CrcKey", null, new { @value = ViewBag.CrcKey })</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Sandbox Mode:")</td>
+                    <td><input name="SandBoxMode" type="checkbox" value="true" checked="@ViewBag.SandBoxMode" /></td>
+                </tr>
+                <tr>
+                    <td> <input type="submit" value="test" /></td>
+                </tr>
+            </table>
+        }
+    </div>
+</body>
+</html>
