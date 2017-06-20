@@ -22,14 +22,35 @@ namespace P24MvcClient.Controllers
         
         public async Task<ActionResult> Index()
         {
+            bool error = false;
             var keys =  Request.Form.AllKeys;
-            string merchantId = Request.Form.Get ("MerchantId");
-            ViewBag.MerchantId = merchantId;
-            this.p24.MerchantId = merchantId;
 
-            string posId = Request.Form.Get("PosId");
-            ViewBag.PosId = posId;
-            this.p24.PosId = posId;
+            string sMerchantId = Request.Form.Get ("MerchantId");
+            int iMerchantId;
+            if(int.TryParse(sMerchantId, out iMerchantId))
+            {
+                this.p24.MerchantId = iMerchantId;
+            }
+            else
+            {
+                error = true;
+                ViewBag.ErrorMessages += "Int parse error. Merchant Id wasn't change\n\r";
+            }
+            ViewBag.MerchantId = this.p24.MerchantId.ToString();
+
+
+            string sPosId = Request.Form.Get("PosId");
+            int iPosId;
+            if(int.TryParse(sPosId, out iPosId))
+            {
+                this.p24.PosId = iPosId;
+            }
+            else
+            {
+                error = true;
+                ViewBag.ErrorMessages += "Int parse error. Pos Id wasn't change\n\r";
+            }
+            ViewBag.PosId = this.p24.PosId.ToString();
 
             string crcKey = Request.Form.Get("Crckey");
             ViewBag.Crckey = crcKey;
@@ -46,7 +67,7 @@ namespace P24MvcClient.Controllers
             else
                 this.p24.SandboxMode = false;
 
-            if(Request.Form.AllKeys.Count() > 0 )
+            if(Request.Form.AllKeys.Count() > 0 && !error)
             {
                 var testResult = await this.p24.TestConnection();
                 ViewBag.TestResult = testResult.ToString();

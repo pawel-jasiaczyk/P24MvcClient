@@ -14,6 +14,7 @@
         @ViewBag.ToDisplay
         @using (Html.BeginForm ("Index", "Home", FormMethod.Post)) 
         {
+            @ViewBag.ErrorMessages
             @ViewBag.TestResult
             <table>
                 <tr>
