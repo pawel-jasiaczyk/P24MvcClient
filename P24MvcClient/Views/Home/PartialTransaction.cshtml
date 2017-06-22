@@ -1,0 +1,35 @@
+﻿@model P24MvcClient.Models.OnePageClientViewModel
+
+<table>
+    <tr>
+        <td class="toRight">p24_session_id :</td>
+        <td>@Html.TextBoxFor(x => x.Transaction.P24_session_id)</td>
+    </tr>
+    <tr>
+        <td class="toRight">p24_amount:</td>
+        <td>@Html.TextBoxFor(x => x.Transaction.P24_amount)</td>
+    </tr>
+    <tr>
+        <td class="toRight">p24_currency :</td>
+        <td>@Html.TextBoxFor(x => x.Transaction.P24_currency)</td>
+    </tr>
+    <tr>
+        <td class="toRight">p24_description :</td>
+        <td>@Html.TextBoxFor(x => x.Transaction.P24_description)</td>
+    </tr>
+    <tr>
+        <td class="toRight">p24_email :</td>
+        <td>@Html.TextBoxFor(x => x.Transaction.P24_email)</td>
+    </tr>
+    <tr>
+        <td class="toRight">p24_country :</td>
+        <td>@Html.TextBoxFor(x => x.Transaction.P24_country)</td>
+    </tr>
+    <tr>
+        <td class="toRight">p24_url_return :</td>
+        <td>@Html.TextBoxFor(x => x.Transaction.P24_url_return)</td>
+    </tr>
+    <tr>
+        <td class="toRight">p24_api_version :</td>
+        <td>@Html.DisplayTextFor(x => x.Transaction.P24_api_version)</td>
+</table>

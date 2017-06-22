@@ -1,0 +1,14 @@
+﻿@model P24MvcClient.Models.OnePageClientViewModel
+
+@using(Html.BeginForm("OnePageClient", "Home", FormMethod.Post))
+{
+   <table>
+       @Html.ValidationSummary()
+       @Html.Partial("PartialPrzelewy24", Model)
+       @Html.Partial("PartialTransaction", Model)
+       <tr>
+           <td><input type="submit" name="TestButton" value="Test" /></td>
+           <td><input type="submit" name="RegisterTransactionButton" value="RegisterTransaction" /></td>
+       </tr>
+   </table> 
+}

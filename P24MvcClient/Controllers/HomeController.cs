@@ -5,82 +5,78 @@ using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
 using Przelewy24;
+using P24MvcClient.Models;
 
 namespace P24MvcClient.Controllers
 {
     public class HomeController : Controller
     {
-        private Przelewy24.Przelewy24 p24;
-
         public HomeController()
-        {
-            this.p24 = new Przelewy24.Przelewy24(0, 0, "");
-        }
+        { }
 
         //
         // GET: /Home/
-        
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            bool error = false;
-            var keys =  Request.Form.AllKeys;
+            OnePageClientViewModel OPC = new OnePageClientViewModel();
+            return View("Index", OPC);
+        }
 
-            string sMerchantId = Request.Form.Get ("MerchantId");
-            int iMerchantId;
-            if(int.TryParse(sMerchantId, out iMerchantId))
-            {
-                this.p24.MerchantId = iMerchantId;
-            }
-            else
-            {
-                error = true;
-                ViewBag.ErrorMessages += "Int parse error. Merchant Id wasn't change\n\r";
-            }
-            ViewBag.MerchantId = this.p24.MerchantId.ToString();
+        public ActionResult OnePageClient()
+        {
+            OnePageClientViewModel OPC = new OnePageClientViewModel();
+            return View("OnePageClient", OPC);
+        }
 
-
-            string sPosId = Request.Form.Get("PosId");
-            int iPosId;
-            if(int.TryParse(sPosId, out iPosId))
+        [HttpPost]
+        public async Task<ActionResult> OnePageClient(OnePageClientViewModel OPC)
+        {
+            if(Request.Form.AllKeys.Contains("TestButton"))
             {
-                this.p24.PosId = iPosId;
-            }
-            else
-            {
-                error = true;
-                ViewBag.ErrorMessages += "Int parse error. Pos Id wasn't change\n\r";
-            }
-            ViewBag.PosId = this.p24.PosId.ToString();
-
-            string crcKey = Request.Form.Get("Crckey");
-            ViewBag.Crckey = crcKey;
-            this.p24.CrcKey = crcKey;
-
-            if (Request.Form.AllKeys.Contains("SandBoxMode"))
-            {
-                if (Request.Form.Get("SandBoxMode").Substring(0, 4) == "true")
+                if (ModelState.IsValidField("P24.CrcKey"))
                 {
-                    ViewBag.SandBoxMode = "checked";
-                    this.p24.SandboxMode = true;
+                    var result = await OPC.P24.TestConnection();
+                    ViewBag.TestResult = result.ToString();
+                }
+                
+            }
+            else if (Request.Form.AllKeys.Contains("RegisterTransactionButton"))
+            {
+                OPC.Transaction.P24 = OPC.P24;
+                if (ModelState.IsValid)
+                {
+                    var result = await OPC.Transaction.RegisterTransaction();
+                    try
+                    {
+                        try
+                        {
+                            Przelewy24.P24Response resp = new P24Response(result.ToString());
+                            if (resp.OK)
+                            {
+                                ViewBag.TestResult = resp.Token;
+                            }
+                            else
+                            {
+                                ViewBag.TestResult = resp.Error + " ";
+                                foreach (KeyValuePair<string, string> desc in resp.Errors)
+                                {
+                                    ViewBag.TestResult += desc.Key + " : " + desc.Value + " ";
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            ViewBag.DebugData += ex.ToString();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.DebugData += ex.ToString();
+                        ViewBag.TestResult = result.ToString();
+                    }
                 }
             }
-            else
-                this.p24.SandboxMode = false;
-
-            if(Request.Form.AllKeys.Count() > 0 && !error)
-            {
-                var testResult = await this.p24.TestConnection();
-                ViewBag.TestResult = testResult.ToString();
-            }
-
-            return View(p24);
-        }
-        
-        public async Task<ActionResult> TestConnection()
-        {
-            var testResult = await this.p24.TestConnection ();
-            ViewBag.TestResult = testResult.ToString ();
-            return View ();
+            return View("OnePageClient", OPC);
         }
 	}
 }

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model P24MvcClient.Models.OnePageClientViewModel
+
+@{
     Layout = null;
 }
 
@@ -7,7 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>OnePageClient</title>
     <style>
         td.toRight {
             text-align: right;
@@ -16,8 +18,12 @@
 </head>
 <body>
     <div>
-        <div> 
-            @Html.ActionLink("One Page Client", "OnePageClient", "Home")
+        <div>
+            @ViewBag.TestResult
+            @ViewBag.DebugData
+        </div>
+        <div>
+            @Html.Partial("PartialOnePageClient", Model)
         </div>
     </div>
 </body>

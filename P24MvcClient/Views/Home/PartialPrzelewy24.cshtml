@@ -1,0 +1,29 @@
+﻿@model P24MvcClient.Models.OnePageClientViewModel
+
+<table>
+    <tr>
+        <td class="toRight">Merchant Id :</td>
+        <td>@Html.TextBoxFor(x => x.P24.MerchantId )</td>
+    </tr>
+    <tr>
+        <td class="toRight">Pos Id :</td>
+        <td>@Html.TextBoxFor(x => x.P24.PosId)</td>
+    </tr>
+    <tr>
+        <td class="toRight">Crc Key : </td>
+        <td>@Html.TextBoxFor(x => x.P24.CrcKey)</td>
+    </tr>
+    <tr>
+        <td class="toRight">Mode :</td>
+        <td>
+            @Html.DropDownListFor(
+            x => x.P24.SandboxMode,
+                new[]
+                {
+                    new SelectListItem(){ Text = "Sandbox", Value = bool.TrueString },
+                    new SelectListItem(){ Text = "Secure", Value = bool.FalseString, Selected = true }
+                }
+            )
+        </td>
+    </tr>
+</table>
