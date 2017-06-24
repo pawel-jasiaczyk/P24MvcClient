@@ -97,6 +97,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\OnePageClientViewModel.cs" />
+    <Compile Include="Models\SingletonDbModel.cs" />
+    <Compile Include="Models\VerifyTransactionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +108,7 @@
     <Content Include="Views\Home\PartialTransaction.cshtml" />
     <Content Include="Views\Home\PartialOnePageClient.cshtml" />
     <Content Include="Views\Home\OnePageClient.cshtml" />
+    <Content Include="Views\Home\ManualTransactionConfirmation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

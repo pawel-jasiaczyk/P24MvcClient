@@ -1,0 +1,108 @@
+﻿@model P24MvcClient.Models.VerifyTransactionHelper
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ManualTransactionConfirmation</title>
+</head>
+<body>
+    @using (Html.BeginForm()) 
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            <h4>VerifyTransactionHelper</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.p24_merchant_id, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.p24_merchant_id)
+                    @Html.ValidationMessageFor(model => model.p24_merchant_id)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.p24_pos_id, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.p24_pos_id)
+                    @Html.ValidationMessageFor(model => model.p24_pos_id)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.p24_session_id, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.p24_session_id)
+                    @Html.ValidationMessageFor(model => model.p24_session_id)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.p24_amount, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.p24_amount)
+                    @Html.ValidationMessageFor(model => model.p24_amount)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.p24_currency, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.p24_currency)
+                    @Html.ValidationMessageFor(model => model.p24_currency)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.p24_order_id, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.p24_order_id)
+                    @Html.ValidationMessageFor(model => model.p24_order_id)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.p24_method, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.p24_method)
+                    @Html.ValidationMessageFor(model => model.p24_method)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.p24_statent, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.p24_statent)
+                    @Html.ValidationMessageFor(model => model.p24_statent)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.p24_sign, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.p24_sign)
+                    @Html.ValidationMessageFor(model => model.p24_sign)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>

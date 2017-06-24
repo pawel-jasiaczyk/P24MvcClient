@@ -78,5 +78,13 @@ namespace P24MvcClient.Controllers
             }
             return View("OnePageClient", OPC);
         }
+
+        public async Task<ActionResult> ManualTransactionConfirmation()
+        {
+
+
+
+            return View();
+        }
 	}
 }
