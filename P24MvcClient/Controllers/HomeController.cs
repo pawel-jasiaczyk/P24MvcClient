@@ -18,13 +18,14 @@ namespace P24MvcClient.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
-            OnePageClientViewModel OPC = new OnePageClientViewModel();
-            return View("Index", OPC);
+//            OnePageClientViewModel OPC = new OnePageClientViewModel();
+//            return View("Index", OPC);
+            return View("Index");
         }
 
         public ActionResult OnePageClient()
         {
-            OnePageClientViewModel OPC = new OnePageClientViewModel();
+            OnePageClientViewModel OPC = OnePageClientViewModel.GetInstance();
             return View("OnePageClient", OPC);
         }
 
@@ -40,25 +41,32 @@ namespace P24MvcClient.Controllers
                 }
                 
             }
+
+            else if (Request.Form.AllKeys.Contains("RegenerateSessionId"))
+            {
+                ModelState.Clear();
+                OPC.Transaction.SetUniqueSessionId(SessionIdGenerationMode.time, "");
+            }
+
             else if (Request.Form.AllKeys.Contains("RegisterTransactionButton"))
             {
-                OPC.Transaction.P24 = OPC.P24;
+                // OPC.Transaction.P24 = OPC.P24;
                 if (ModelState.IsValid)
                 {
-                    var result = await OPC.Transaction.RegisterTransaction();
                     try
                     {
+                        OPC.Transaction.ThisTransactionNumber--;
+                        P24Response result = await OPC.Transaction.RegisterTransaction(true);
                         try
                         {
-                            Przelewy24.P24Response resp = new P24Response(result.ToString());
-                            if (resp.OK)
+                            if (result.OK)
                             {
-                                ViewBag.TestResult = resp.Token;
+                                ViewBag.TestResult = result.Token;
                             }
                             else
                             {
-                                ViewBag.TestResult = resp.Error + " ";
-                                foreach (KeyValuePair<string, string> desc in resp.Errors)
+                                ViewBag.TestResult = result.Error + " ";
+                                foreach (KeyValuePair<string, string> desc in result.Errors)
                                 {
                                     ViewBag.TestResult += desc.Key + " : " + desc.Value + " ";
                                 }
@@ -72,7 +80,6 @@ namespace P24MvcClient.Controllers
                     catch (Exception ex)
                     {
                         ViewBag.DebugData += ex.ToString();
-                        ViewBag.TestResult = result.ToString();
                     }
                 }
             }
@@ -81,10 +88,25 @@ namespace P24MvcClient.Controllers
 
         public async Task<ActionResult> ManualTransactionConfirmation()
         {
-
-
-
             return View();
         }
+
+        [HttpPost]
+        public async Task<string> P24Status(VerifyTransactionHelper vth)
+        {
+            Przelewy24.Przelewy24 p24 = OnePageClientViewModel.GetInstance().P24;
+            var result = await p24.VerifyTransaction(
+                                vth.p24_merchant_id,
+                                vth.p24_pos_id,
+                                vth.p24_session_id,
+                                vth.p24_amount,
+                                vth.p24_currency,
+                                vth.p24_order_id,
+                                vth.p24_method,
+                                vth.p24_statent,
+                                vth.p24_sign);
+            return result.ToString();
+        }
+
 	}
 }

@@ -8,7 +8,14 @@
        @Html.Partial("PartialTransaction", Model)
        <tr>
            <td><input type="submit" name="TestButton" value="Test" /></td>
-           <td><input type="submit" name="RegisterTransactionButton" value="RegisterTransaction" /></td>
+           <td><input type="submit" name="RegisterTransactionButton" value="Register Transaction" /></td>
+       </tr>
+       <tr>
+           <td><input type="submit" name="RegenerateSessionId" value="Regenerate Session Id"></td>
        </tr>
    </table> 
+}
+@if(Model.Transaction.P24Response != null && Model.Transaction.P24Response.OK)
+{
+    <a href="@Model.Transaction.GetRequestLink()">@Model.Transaction.GetRequestLink()</a>
 }
