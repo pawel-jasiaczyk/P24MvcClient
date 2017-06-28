@@ -5,15 +5,15 @@
 <table>
     <tr>
         <td class="toRight">Merchant Id :</td>
-        <td>@Html.TextBoxFor(x => x.P24.MerchantId )</td>
+        <td>@Html.TextBoxFor(x => x.P24.MerchantId, new { @Value = "1604" })</td>
     </tr>
     <tr>
         <td class="toRight">Pos Id :</td>
-        <td>@Html.TextBoxFor(x => x.P24.PosId)</td>
+        <td>@Html.TextBoxFor(x => x.P24.PosId, new { @Value = "1604" })</td>
     </tr>
     <tr>
         <td class="toRight">Crc Key : </td>
-        <td>@Html.TextBoxFor(x => x.P24.CrcKey)</td>
+        <td>@Html.TextBoxFor(x => x.P24.CrcKey, new { @Value = "4aca0b5e3950f78b" })</td>
     </tr>
     <tr>
         <td class="toRight">Mode :</td>
@@ -24,6 +24,19 @@
                 {
                     new SelectListItem(){ Text = "Sandbox", Value = bool.TrueString },
                     new SelectListItem(){ Text = "Secure", Value = bool.FalseString, Selected = true }
+                }
+            )
+        </td>
+    </tr>
+    <tr>
+        <td class="toRight">Automatic redirection :</td>
+        <td>
+            @Html.DropDownListFor(
+            x => x.P24.AutomaticRedirection,
+                new[]
+                {
+                    new SelectListItem(){ Text = "Yes", Value = bool.TrueString, Selected = true },
+                    new SelectListItem(){ Text = "No", Value = bool.FalseString }
                 }
             )
         </td>

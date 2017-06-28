@@ -14,6 +14,8 @@ namespace P24MvcClient.Models
         public Przelewy24.Przelewy24 P24 { get; set; }
         public Przelewy24.Transaction Transaction { get; set; }
 
+        public bool AutomaticRedirection { get; set; }
+
         public int InstanceNumber { get; private set; }
 
         private OnePageClientViewModel(bool insideCall)

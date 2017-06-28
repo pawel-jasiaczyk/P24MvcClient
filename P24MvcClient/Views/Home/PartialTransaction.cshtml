@@ -7,27 +7,27 @@
     </tr>
     <tr>
         <td class="toRight">p24_amount:</td>
-        <td>@Html.TextBoxFor(x => x.Transaction.P24_amount)</td>
+        <td>@Html.TextBoxFor(x => x.Transaction.P24_amount, new { @Value = "500" })</td>
     </tr>
     <tr>
         <td class="toRight">p24_currency :</td>
-        <td>@Html.TextBoxFor(x => x.Transaction.P24_currency)</td>
+        <td>@Html.TextBoxFor(x => x.Transaction.P24_currency, new { @Value = "PLN" })</td>
     </tr>
     <tr>
         <td class="toRight">p24_description :</td>
-        <td>@Html.TextBoxFor(x => x.Transaction.P24_description)</td>
+        <td>@Html.TextBoxFor(x => x.Transaction.P24_description, new { @Value = "testowe zamówienie" })</td>
     </tr>
     <tr>
         <td class="toRight">p24_email :</td>
-        <td>@Html.TextBoxFor(x => x.Transaction.P24_email)</td>
+        <td>@Html.TextBoxFor(x => x.Transaction.P24_email, new { @Value = "test@test.pl" })</td>
     </tr>
     <tr>
         <td class="toRight">p24_country :</td>
-        <td>@Html.TextBoxFor(x => x.Transaction.P24_country)</td>
+        <td>@Html.TextBoxFor(x => x.Transaction.P24_country, new { @Value = "pl" })</td>
     </tr>
     <tr>
         <td class="toRight">p24_url_return :</td>
-        <td>@Html.TextBoxFor(x => x.Transaction.P24_url_return)</td>
+        <td>@Html.TextBoxFor(x => x.Transaction.P24_url_return, new { @Value = "http://przelewy24.pl" })</td>
     </tr>
     <tr>
         <td class="toRight">p24_api_version :</td>
