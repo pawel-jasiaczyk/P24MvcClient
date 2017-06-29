@@ -37,7 +37,7 @@ namespace P24MvcClient.Controllers
 				if (ModelState.IsValidField("P24.CrcKey"))
 				{
 					var result = await OPC.P24.TestConnection();
-					ViewBag.TestResult = result.ToString();
+					ViewBag.TestResult = "TestConnection Result" + result.ToString();
 				}
 				
 			}
@@ -61,7 +61,7 @@ namespace P24MvcClient.Controllers
 						{
 							if (result.OK)
 							{
-								ViewBag.TestResult = result.Token;
+								ViewBag.TestResult = "Generated token:" + result.Token + " Automatic redirection";
 								if (Request.Form.AllKeys.Contains("P24.AutomaticRedirection") && Request.Form["P24.AutomaticRedirection"] == "True")
 								{
 									return Redirect(OPC.Transaction.GetRequestLink());

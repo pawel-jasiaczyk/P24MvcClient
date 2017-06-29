@@ -1,35 +1,43 @@
 ﻿@model P24MvcClient.Models.OnePageClientViewModel
-<p>P24_session_is : @Model.Transaction.P24_session_id</p>
-<table>
-    <tr>
-        <td class="toRight">p24_session_id :</td>
-        <td>@Html.TextBoxFor(x => x.Transaction.P24_session_id)</td>
-    </tr>
-    <tr>
-        <td class="toRight">p24_amount:</td>
-        <td>@Html.TextBoxFor(x => x.Transaction.P24_amount, new { @Value = "500" })</td>
-    </tr>
-    <tr>
-        <td class="toRight">p24_currency :</td>
-        <td>@Html.TextBoxFor(x => x.Transaction.P24_currency, new { @Value = "PLN" })</td>
-    </tr>
-    <tr>
-        <td class="toRight">p24_description :</td>
-        <td>@Html.TextBoxFor(x => x.Transaction.P24_description, new { @Value = "testowe zamówienie" })</td>
-    </tr>
-    <tr>
-        <td class="toRight">p24_email :</td>
-        <td>@Html.TextBoxFor(x => x.Transaction.P24_email, new { @Value = "test@test.pl" })</td>
-    </tr>
-    <tr>
-        <td class="toRight">p24_country :</td>
-        <td>@Html.TextBoxFor(x => x.Transaction.P24_country, new { @Value = "pl" })</td>
-    </tr>
-    <tr>
-        <td class="toRight">p24_url_return :</td>
-        <td>@Html.TextBoxFor(x => x.Transaction.P24_url_return, new { @Value = "http://przelewy24.pl" })</td>
-    </tr>
-    <tr>
-        <td class="toRight">p24_api_version :</td>
-        <td>@Html.DisplayTextFor(x => x.Transaction.P24_api_version)</td>
-</table>
+
+    <div class="AccountParameter">
+        <div class="AccountLabel">p24_session_id :</div>
+        <div class = "AccountTextbox">@Html.TextBoxFor(x => x.Transaction.P24_session_id)</div>
+    </div>
+    <div class="AccountParameter">
+        <div class="AccountLabel">p24_amount:</div>
+        <div class = "AccountTextbox">@Html.TextBoxFor(x => x.Transaction.P24_amount, new { @Value = "500" })</div>
+    </div>
+    <div class="AccountParameter">
+        <div class="AccountLabel">p24_currency :</div>
+        <div class = "AccountTextbox">@Html.TextBoxFor(x => x.Transaction.P24_currency, new { @Value = "PLN" })</div>
+    </div>
+    <div class="AccountParameter">
+        <div class="AccountLabel">p24_description :</div>
+        <div class = "AccountTextbox">@Html.TextBoxFor(x => x.Transaction.P24_description, new { @Value = "testowe zamówienie" })</div>
+    </div>
+    <div class="AccountParameter">
+        <div class="AccountLabel">p24_email :</div>
+        <div class = "AccountTextbox">@Html.TextBoxFor(x => x.Transaction.P24_email, new { @Value = "test@test.pl" })</div>
+    </div>
+    <div class="AccountParameter">
+        <div class="AccountLabel">p24_country :</div>
+        <div class = "AccountTextbox">@Html.TextBoxFor(x => x.Transaction.P24_country, new { @Value = "pl" })</div>
+    </div>
+    <div class="AccountParameter">
+        <div class="AccountLabel">p24_url_return :</div>
+        <div class = "AccountTextbox">@Html.TextBoxFor(x => x.Transaction.P24_url_return, new { @Value = "http://przelewy24.pl" })</div>
+    </div>
+    <div class="AccountParameter">
+        <div class="AccountLabel">p24_api_version :</div>
+        <div class = "AccountTextbox">@Html.DisplayTextFor(x => x.Transaction.P24_api_version)</div>
+    </div>
+    <div>
+        <input type="submit" name="RegisterTransactionButton" value="Register Transaction" class="Button" />
+    </div>
+<div class="AccountParameter">
+    @if (Model.Transaction.P24Response != null && Model.Transaction.P24Response.OK)
+    {
+        <div class = "AccountLabel"><a href="@Model.Transaction.GetRequestLink()">@Model.Transaction.GetRequestLink()</a></div>
+    }
+</div>

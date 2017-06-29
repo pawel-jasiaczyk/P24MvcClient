@@ -10,22 +10,30 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>OnePageClient</title>
+    <link rel="stylesheet" href="~/Content/style.css">
     <style>
-        td.toRight {
-            text-align: right;
-        }
+
     </style>
 </head>
-<body>
-    <div>
-        <div>
-            <p>Number of instance : @Model.InstanceNumber</p>
-            @ViewBag.TestResult
-            @ViewBag.DebugData
+<body class="body">
+    <div class="Menu">
+        <div class="MenuTab" id="Account">
+            Dane Konta
         </div>
-        <div>
-            @Html.Partial("PartialOnePageClient", Model)
+        <div class="MenuTab" id="Transaction">
+            Dane Transakcji
+        </div>
+        <div class="MenuTab" id="Webservice">
+            Webservice
         </div>
     </div>
+    <div class="AccountContent">
+        <div class="Data">
+            @Html.Partial("PartialOnePageClient", Model)
+        </div>
+            <div class="Results">
+                @Html.Partial("PartialResults", Model)
+            </div>
+        </div>
 </body>
 </html>

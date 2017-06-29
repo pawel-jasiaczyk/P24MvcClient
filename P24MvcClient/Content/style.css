@@ -1,0 +1,65 @@
+﻿body 
+{
+    
+}
+
+.toRight 
+    {
+    text-align: right;
+    }
+.AccountContent
+{
+    width:95%;
+    background-color:rgb(227, 227, 227);
+    overflow: auto;
+    border-width:1px;
+    border-style:solid;
+    margin-top:50px;
+}
+.AccountParameter
+{
+    margin:10px;
+    overflow: auto;
+}
+.AccountLabel
+{
+    float: left;
+    width: 200px;
+}
+.AccountTextbox
+{
+    width: 200px;
+    float: right;
+}
+.Button
+{
+    margin:10px;
+    width: 200px;
+}
+.Results
+{
+    float: right;
+    text-align:center;
+    width:50%;
+}
+.Data
+{
+    float: left;
+}
+.ResultTextarea
+{
+    width: 90%;
+    height:500px;
+    margin:10px;
+}
+.MenuTab
+{
+    background-color:rgb(227, 227, 227);
+    width:150px;
+    border-width:1px;
+    border-style:solid;
+    border-bottom-width:0;
+    float:left;
+    text-align:center;
+    cursor:pointer;
+}
