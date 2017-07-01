@@ -3,15 +3,15 @@
 
     <div class="AccountParameter">
         <div class="AccountLabel">Merchant Id :</div>
-        <div class = "AccountTextbox">@Html.TextBoxFor(x => x.P24.MerchantId, new { @Value = "1604" })</div>
+        <div class = "AccountTextbox">@Html.TextBoxFor(x => x.P24.MerchantId)</div>
     </div>
     <div class="AccountParameter">
         <div class="AccountLabel">Pos Id :</div>
-        <div class = "AccountTextbox">@Html.TextBoxFor(x => x.P24.PosId, new { @Value = "1604" })</div>
+        <div class = "AccountTextbox">@Html.TextBoxFor(x => x.P24.PosId)</div>
     </div>
     <div class="AccountParameter">
         <div class="AccountLabel">Crc Key : </div>
-        <div class = "AccountTextbox">@Html.TextBoxFor(x => x.P24.CrcKey, new { @Value = "4aca0b5e3950f78b"})</div>
+        <div class = "AccountTextbox">@Html.TextBoxFor(x => x.P24.CrcKey)</div>
     </div>
     <div class="AccountParameter">
         <div class="AccountLabel">P24_url_status : </div>
@@ -25,7 +25,7 @@
                 new[]
                 {
                     new SelectListItem(){ Text = "Sandbox", Value = bool.TrueString },
-                    new SelectListItem(){ Text = "Secure", Value = bool.FalseString, Selected = true }
+                    new SelectListItem(){ Text = "Secure", Value = bool.FalseString }
                 }
             )
         </div>
