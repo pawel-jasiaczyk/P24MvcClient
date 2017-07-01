@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+
 using Przelewy24;
 
 namespace P24MvcClient.Models
@@ -49,6 +50,7 @@ namespace P24MvcClient.Models
         private void AllConstructorsOpetarions()
         {
             this.P24 = new Przelewy24.Przelewy24();
+            this.P24.P24_url_status = HttpContext.Current.Request.Url.Authority + "/home/P24Status";
             this.Transaction = new Transaction(this.P24);
             this.P24.TransactionDb = SingletonDbModel.GetInstace() as IP24Db;
         }

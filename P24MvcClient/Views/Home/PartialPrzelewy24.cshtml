@@ -14,6 +14,10 @@
         <div class = "AccountTextbox">@Html.TextBoxFor(x => x.P24.CrcKey, new { @Value = "4aca0b5e3950f78b"})</div>
     </div>
     <div class="AccountParameter">
+        <div class="AccountLabel">P24_url_status : </div>
+        <div class="AccountTextbox">@Html.TextBoxFor(x => x.P24.P24_url_status)</div>
+    </div>
+    <div class="AccountParameter">
         <div class="AccountLabel">Mode :</div>
         <div>
             @Html.DropDownListFor(
